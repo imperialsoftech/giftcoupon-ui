@@ -21,16 +21,26 @@
     <script src="../assets/node_modules/switchery/dist/switchery.min.js"></script>
     <script src="../assets/node_modules/datatables/jquery.dataTables.min.js"></script>
    
-    <script src="../assets/node_modules/flot/excanvas.js"></script>
+    <!-- <script src="../assets/node_modules/flot/excanvas.js"></script>
     <script src="../assets/node_modules/flot/jquery.flot.js"></script>
     <script src="../assets/node_modules/flot/jquery.flot.pie.js"></script>
-    <!-- <script src="../assets/node_modules/flot/jquery.flot.time.js"></script> -->
+     --><!-- <script src="../assets/node_modules/flot/jquery.flot.time.js"></script> -->
     <!-- <script src="../assets/node_modules/flot/jquery.flot.stack.js"></script> -->
     <!-- <script src="../assets/node_modules/flot/jquery.flot.crosshair.js"></script> -->
-    <script src="../assets/node_modules/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <!-- <script src="../assets/node_modules/flot.tooltip/js/jquery.flot.tooltip.min.js"></script> -->
     <!-- <script src="dist/js/pages/flot-data.js"></script> -->
 
-    <script type="text/javascript" src="dist/js/main/web3.min.js"></script>
+    <!--  contract abi  -->
+    <script type="text/javascript" src="dist/js/web3.min.js"></script>
+    <script type="text/javascript" src="dist/js/abi/icoContractAbi.js"></script>
+    <script type="text/javascript" src="dist/js/abi/icoTokenAbi.js"></script>
+    <script type="text/javascript" src="dist/js/abi/giftCouponAbi.js"></script>
+
+    <script type="text/javascript" src="dist/js/app/app.js"></script>
+
+    <script type="text/javascript" src="dist/js/app/user.js"></script>
+    <script type="text/javascript" src="dist/js/app/admin.js"></script>
+
     
     <script type="text/javascript">
     $(function() {
@@ -42,7 +52,7 @@
         $("#task2").perfectScrollbar();
         $("#task3").perfectScrollbar();
 
-        initChart();
+       // initChart();
     });
 
     function initChart(){

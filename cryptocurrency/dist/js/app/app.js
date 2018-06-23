@@ -9,7 +9,8 @@
 
 	var icoAddress = {
 		'mainContract': "0xf8e187b9c3778614e9e007c745dccdc92f297eb9",
-		'tokenContract': "0xd1e3f4ea5040415d1a378e3697a3254afa2cad48"
+		'tokenContract': "0xd1e3f4ea5040415d1a378e3697a3254afa2cad48",
+		'giftCouponContract' : '0x3d4cf6dc18085874a9201ec28ab0809c810fecf1'
 	};
 
 
@@ -236,14 +237,7 @@
 				fundEndDateTime = data;
 	 			$(window).trigger({type:"fundEndDateTime",fundEndDateTimeData:fundEndDateTime});
 			});
-		},500);	
-
-
-		
-
-
-			
-		
+		},500);			
 
 		getAllEvents(token);
 	});
@@ -265,6 +259,7 @@
 		 */
 		contract = new web3.eth.Contract(icoContractAbi,icoAddress.mainContract);
 		token = new web3.eth.Contract(icoTokenAbi,icoAddress.tokenContract);
+		giftCoupon = new web3.eth.Contract(giftCouponAbi,icoAddress.giftCouponContract);
 
 		/*
 		 * Call contract with Contract Address and Token Address
@@ -277,8 +272,8 @@
 		
 
 		contract.events.allEvents((error,data) => {
-			console.log(error);
-			console.log(data);
+			////console.log(error);
+			//console.log(data);
 		})
 		
 
