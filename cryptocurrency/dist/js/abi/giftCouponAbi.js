@@ -1,79 +1,5 @@
 var giftCouponAbi = [
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_couponCode",
-				"type": "uint32"
-			}
-		],
-		"name": "redeemCoupon",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "getGiftCouponCodes",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256[]"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_cost",
-				"type": "uint256"
-			},
-			{
-				"name": "_validity",
-				"type": "uint256"
-			},
-			{
-				"name": "_title",
-				"type": "string"
-			},
-			{
-				"name": "_noOfCoupon",
-				"type": "uint256"
-			}
-		],
-		"name": "createGiftCoupon",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"name": "_icoToken",
-				"type": "address"
-			},
-			{
-				"name": "_icoContract",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -121,5 +47,128 @@ var giftCouponAbi = [
 		],
 		"name": "couponRedeemed",
 		"type": "event"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_cost",
+				"type": "uint256"
+			},
+			{
+				"name": "_validity",
+				"type": "uint256"
+			},
+			{
+				"name": "_title",
+				"type": "string"
+			},
+			{
+				"name": "_noOfCoupon",
+				"type": "uint256"
+			}
+		],
+		"name": "createGiftCoupon",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_couponCode",
+				"type": "uint32"
+			}
+		],
+		"name": "redeemCoupon",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_icoToken",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getGiftCouponCodes",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_couponCode",
+				"type": "uint32"
+			}
+		],
+		"name": "getGiftCouponDetails",
+		"outputs": [
+			{
+				"name": "title",
+				"type": "string"
+			},
+			{
+				"name": "cost",
+				"type": "uint256"
+			},
+			{
+				"name": "validity",
+				"type": "uint256"
+			},
+			{
+				"name": "code",
+				"type": "uint256"
+			},
+			{
+				"name": "creator",
+				"type": "address"
+			},
+			{
+				"name": "redeemedBy",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "RedeemableCost",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]

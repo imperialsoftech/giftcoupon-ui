@@ -8,9 +8,9 @@
 		tokenTransferPaused;
 
 	var icoAddress = {
-		'mainContract': "0xf8e187b9c3778614e9e007c745dccdc92f297eb9",
-		'tokenContract': "0xd1e3f4ea5040415d1a378e3697a3254afa2cad48",
-		'giftCouponContract' : '0x3d4cf6dc18085874a9201ec28ab0809c810fecf1'
+		'tokenContract': "0x6b1d60ea08927c6d7c24c6f7d4fd8ba45fbe0c0b",
+		'mainContract': "0xb58c47b9df3ba775f9c8e221f0f3d84185e05462",		
+		'giftCouponContract' : '0x5b4cd3b2988ba3560b888ef72239cadd6a37a147'
 	};
 
 

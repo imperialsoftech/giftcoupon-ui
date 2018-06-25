@@ -25,8 +25,7 @@ $(window).on("contractReady", function ()
        /*  Slight Timeout is required for value */
        setTimeout(() => {
           $("#inpMinContribution").trigger("keyup");
-       }, 100);
-       
+       }, 100);       
     });
 
     getCurrentExchangeRate(contract, function(result){
@@ -36,19 +35,20 @@ $(window).on("contractReady", function ()
         }
     });
 
-
     setTimeout(function()
     {
       getCouponAllowance(token,coinbase,icoAddress.giftCouponContract, function(result){
           if(result != false)
           {
-            $("#couponAllowance").html("<b> Token : "+result+" BLV</b>");
+            $("#couponAllowance").html("<b> Token : "+toEther(result)+" BLV</b>");
           }
       });
     },2000);
-    
 
-
+    setTimeout(function(){
+       showGiftCouponDetails();
+    },500);
+   
 });
 
 
@@ -74,8 +74,8 @@ $(window).on("tokenTransferPaused",function(data)
 
 function approveTokenUse()
 {
-    approveTokenAllowance($("#approveToken").val());
-}
+   approveTokenAllowance($("#approveToken").val());
+} 
 
 function approveTokenAllowance(tokenValue){
 
@@ -86,7 +86,7 @@ function approveTokenAllowance(tokenValue){
     }
 
     tokenValue =  tokenValue || 1 ;
-    tokenValue = tokenValue * tokenExchangeRate;
+    tokenValue = toWei(tokenValue);
 
     approveStatus = token.methods.approve(icoAddress.giftCouponContract,tokenValue)
     .send({from:coinbase,to:icoAddress.giftCouponContract})
@@ -96,7 +96,7 @@ function approveTokenAllowance(tokenValue){
     })
     .on('receipt',function(receipt)
     {
-      receiptMessage = "Token Transferred Successfully";
+      receiptMessage = "Token Approved Successfully";
       handleTransactionReceipt(receipt,receiptMessage)
     })
     .on('error',function(error)
@@ -104,7 +104,111 @@ function approveTokenAllowance(tokenValue){
       handleGenericError(error.message);
           return;   
     })      
+}
+
+
+function generateGiftCoupon()
+{
+   tmpDate = $("#coupon_expiry").val().trim().split("-");
+   tmpDate = tmpDate[0]+"/"+tmpDate[1]+"/"+tmpDate[2];    
+
+   cost = $("#coupon_cost").val();   
+   expiry = new Date(tmpDate) / 1000;
+   title = $("#coupon_title").val();
+   quantity =  $("#coupon_quantity").val();
    
+   createGiftCoupon(giftCoupon, cost, expiry, title, quantity);
+}
+
+function createGiftCoupon(ContractRef, cost, expiry, title, quantity ){
+
+  ContractRef.methods.createGiftCoupon(cost, expiry, title, quantity)
+  .send({from:coinbase,to:icoAddress.giftCouponContract})
+  .on('transactionHash',function(hash)
+  {
+      handleTransactionResponse(hash);
+  })
+  .on('receipt',function(receipt)
+  {
+      receiptMessage = "Gift Coupons Created Successfully";
+      handleTransactionReceipt(receipt,receiptMessage)
+  })
+  .on('error',function(error)
+  {
+      handleGenericError(error.message);
+      return;   
+  }) 
+}
+
+function redeemCoupon()
+{
+    code = $("#coupon_code").val();  
+    redeemCouponCode(giftCoupon, code);
+}
+
+function redeemCouponCode(ContractRef, couponCode)
+{
+    ContractRef.methods.redeemCoupon(couponCode)
+    .send({from:coinbase,to:icoAddress.giftCouponContract})
+    .on('transactionHash',function(hash)
+    {
+        handleTransactionResponse(hash);
+    })
+    .on('receipt',function(receipt)
+    {
+        receiptMessage = "Coupon Code Redeemed Successfully";
+        handleTransactionReceipt(receipt,receiptMessage)
+    })
+    .on('error',function(error)
+    {
+        handleGenericError(error.message);
+        return;   
+    }) 
+}
+
+
+function getGiftCouponCodesList(ContractRef, callback)
+{
+    ContractRef.methods.getGiftCouponCodes().call({from:coinbase})
+    .then((codeList) => {      
+      callback(codeList);
+    })
+    .catch((error) => {      
+      callback(0);
+    });
+} 
+
+function getGiftCouponList(ContractRef,callback){  
+
+  getGiftCouponCodesList(giftCoupon, function(code){
+    for(i = 0 ; i < code.length ; i++)
+    {    
+      ContractRef.methods.getGiftCouponDetails(code[i]).call({from:coinbase})
+      .then((codeList) => {      
+        callback(codeList);
+      })
+      .catch((error) => {      
+        callback(0);
+      });
+    }
+  });
+}
+
+function showGiftCouponDetails()
+{
+  getGiftCouponList(giftCoupon, function(CouponDetail){
+
+      CouponDetailBatch = "<tr role='row'>"+"<td>"+1+"</td>"+
+                    "<td>"+ CouponDetail.title +"</td>"+
+                    "<td>"+ CouponDetail.code +"</td>"+
+                    "<td> "+toEther(CouponDetail.cost) +" </td>"+
+                    "<td>"+ new Date(CouponDetail.validity * 1000 ).toLocaleString() +"</td>"+
+                    "<td>"+ CouponDetail.creator +"</td>"+
+                    "<td>"+ CouponDetail.redeemedBy +"</td></tr>";
+
+        $("#cc-table > tbody").append(CouponDetailBatch);
+     
+  });
 }
 
 
@@ -234,7 +338,6 @@ $(window).on("tokenTransferPaused",function(data)
         $("#btnTransferPurchase").show();
     }
 });
-
 
 $(window).on("tokenPurchasePaused",function(data)
 {

@@ -32,51 +32,7 @@ $tokenSymbol = "BLV";
                     <div class="col-md-12">
                         <div class="alert alert-info" id="divOngoingTransaction" style="display: none">Ongoing Transaction: <span id="linkOngoingTransaction">None</span> </div>
                     </div>    
-                </div>
-              <!--  <div class="row"> -->
-                    <!-- Column -->
-                  <!--   <div class="col-lg-6 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div class="round align-self-center round-lg round-info"><i class="fa fa-qrcode"></i></div>
-                                    <div class="m-l-10 align-self-center">
-                                        <h3 class="m-b-0">Your Address</h3>
-                                        <h5 class="text-muted m-b-0" id="currentUserAddress">0x0000000000000000000000000000000000000000</h5></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Column --> 
-                    <!-- Column -->
-                   <!--  <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div class="round align-self-center round-lg round-danger"><i class="ti-wallet"></i></div>
-                                    <div class="m-l-10 align-self-center">
-                                        <h3 class="m-b-0" id="tokenBalance">0 OKT</h3>
-                                        <h5 class="text-muted m-b-0">OK Token</h5></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Column -->
-                    <!-- Column -->
-                   <!--  <div class="col-lg-3 col-md-6">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-row">
-                                    <div class="round align-self-center round-lg round-success"><i class="ti-wallet"></i></div>
-                                    <div class="m-l-10 align-self-center">
-                                        <h3 class="m-b-0" id="accountBalance">0 ETH</h3>
-                                        <h5 class="text-muted m-b-0">Ether Balance</h5></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Column -->
-                <!-- </div> -->
+                </div>            
 
                 <div class="row">
                     <!-- Column -->
@@ -186,7 +142,7 @@ $tokenSymbol = "BLV";
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-ge"></i></span>
                                             </div>
-                                            <input type="number" min="100" class="form-control" placeholder="No. of Tokens" aria-label="Coupon Cost" aria-describedby="basic-addon1" id="coupon_cost" value="">
+                                            <input type="number" min="100" class="form-control" placeholder="Cost per Coupon in Token" aria-label="Coupon Cost" aria-describedby="basic-addon1" id="coupon_cost" value="">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -209,7 +165,8 @@ $tokenSymbol = "BLV";
                                         </div>
                                     </div>
                                     
-                                    <button type="submit" id="btnGenerateCoupon" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
+                                    <button type="button" onclick="generateGiftCoupon()" id="btnGenerateCoupon" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
+
                                     <button type="button" disabled="" class="btn btn-warning" id="btnTransferPurchase" style="display: none">
                                         Transfer Not Available
                                     </button>
@@ -288,7 +245,6 @@ $tokenSymbol = "BLV";
                                                 <span class="input-group-text" id="basic-addon2"><?php echo $tokenSymbol; ?></span>
                                             </div>
                                             <input type="text" class="form-control" placeholder="Enter no. of <?php echo $tokenSymbol; ?>" aria-label="Email" aria-describedby="basic-addon2" id="sendToken">
-
                                         </div>
                                     </div>
                                     
@@ -313,7 +269,7 @@ $tokenSymbol = "BLV";
                                             </div>
                                            
                                             <div class="col-md-3">
-                                                <button type="submit" id="redeemCouponBtn" class="btn btn-success waves-effect waves-light m-r-10">Redeem</button>
+                                                <button type="button" onclick="redeemCoupon()" id="redeemCouponBtn" class="btn btn-success waves-effect waves-light m-r-10">Redeem</button>
                                             </div>
                                         </div>    
                                     </div>  
@@ -370,23 +326,29 @@ $tokenSymbol = "BLV";
                                         <thead>
                                             <tr>
                                                 <th>Sr. No.</th>
-                                                <th>User Address</th>
+                                                <th>Coupon Title</th>
                                                 <th>Coupon Code</th>
-                                                <th>Token</th>
-                                                <th>Status</th>
+                                                <th>Coupon Cost (in Token)</th>
+                                                <th>Coupon Validity</th>
+                                                <th>Created By</th>
+                                                <th>Redeemed By</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr role="row">
+                                             <tr role="row">
                                                 <td>1</td>
+                                                <td>Shopping Voucher</td>
+                                                <td>637752485</td>
+                                                <td>200</td>
+                                                <td>31/06/2018</td>
                                                 <td>
                                                     <div class="text-ellipsis"><a href="JavaScript: void(0);">  0xab0874cB61D83F6B67Dc08141568868102233bef</a></div>
-                                                </td>
-                                                <td class="no-wrap text-right"><span class="label label-danger">GET8456348631</span></td>
-                                                <td class="no-wrap text-right">500</td>
-                                                <td class="no-wrap text-right"><span class="label label-danger">Expired</span></td>
-                                            </tr>
-                                            <tr role="row">
+                                                </td>                                                
+                                                <td>
+                                                    <div class="text-ellipsis"><a href="JavaScript: void(0);">  0xab0874cB61D83F6B67Dc08141568868102233bef</a></div>
+                                                </td>                                                
+                                            </tr> 
+                                          <!--  <tr role="row">
                                                 <td>2</td>
                                                 <td>
                                                     <div class="text-ellipsis"><a href="JavaScript: void(0);">  0xab0874cB61D83F6B67Dc08141568868102233bef</a></div>
@@ -439,7 +401,7 @@ $tokenSymbol = "BLV";
                                                 <td class="no-wrap text-right"><span class="label label-danger">GET8456348631</span></td>
                                                 <td class="no-wrap text-right">500</td>
                                                 <td class="no-wrap text-right"><span class="label label-danger">Expired</span></td>
-                                            </tr>
+                                            </tr>-->
 
                                             
                                         </tbody>
