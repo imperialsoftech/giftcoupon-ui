@@ -4,17 +4,12 @@ var tokenExchangeRate = false;
 var couponAllowance = false;
 var tokenAddress = false;
 
-// var tokenDistributorInstance = contract;
-// var tokenBaseInstance = token;
-
 $("#inpMinContribution").on("keyup", function () {
     var tokenValue = currentExchangeRate * $(this).val();
     $("#spProbableToken").html(tokenValue + " BLV");
 });
 
-
-$(window).on("contractReady", function ()
-{
+$(window).on("contractReady", function () {
     getMinContribution(contract,function(data)
     {
        $("#spMinContribution").html(toEther(data));
@@ -79,7 +74,6 @@ function setTokenAddress()
     $("#currentTokenAddress").html(tokenAddress);
 }
 
-
 function approveTokenUse()
 {
    approveTokenAllowance($("#approveToken").val());
@@ -113,7 +107,6 @@ function approveTokenAllowance(tokenValue){
           return;   
     })      
 }
-
 
 function generateGiftCoupon()
 {
@@ -174,7 +167,6 @@ function redeemCouponCode(ContractRef, couponCode)
     }) 
 }
 
-
 function getGiftCouponCodesList(ContractRef, callback)
 {
     ContractRef.methods.getGiftCouponCodes().call({from:coinbase})
@@ -201,48 +193,6 @@ function getGiftCouponList(ContractRef,callback){
     }
   });
 }
-/*
-function showGiftCouponDetails()
-{
-  $("#cc-table > tbody > tr.odd").remove();
-  j= 1;
-  getGiftCouponList(giftCoupon, function(CouponDetail){    
-
-    dateString = new Date(CouponDetail.validity * 1000 ).toLocaleString();
-    dateString = dateString.substring(0,dateString.indexOf(':')-4);  
-
-    if(CouponDetail.redeemedBy == "0x0000000000000000000000000000000000000000"){
-      redeemedAddress = `<td class="no-wrap text-right"><span class="label label-danger">Not Redeemed</span></td>`;
-    }
-    else
-    {
-      redeemedUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.redeemedBy;
-
-      redeemedAddress = `<td><div class="text-ellipsis"><a href="`+redeemedUrl+`">`+ 
-                        CouponDetail.redeemedBy +
-                        `</a></div></td>`;
-    }
-
-    creatorUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.creator;
-
-    titleString = (CouponDetail.title).slice(1, -1);
-
-    if(CouponDetail.code!=""){
-      CouponDetailBatch =`<tr role="row">
-                                                <td>`+j+`</td>
-                                                <td>`+titleString+`</td>
-                                                <td>`+CouponDetail.code+`</td>
-                                                <td>`+toEther(CouponDetail.cost)+`</td>
-                                                <td>`+dateString+`</td>
-                                                <td>
-                                                    <div class="text-ellipsis"><a href="`+creatorUrl+`">`+ CouponDetail.creator +`</a></div>
-                                                </td>`+redeemedAddress+`</tr>` 
-
-        $("#cc-table > tbody").append(CouponDetailBatch);     
-        j++;
-    }
-  });
-}*/
 
 function showGiftCouponDetails()
 {
@@ -285,18 +235,12 @@ function showGiftCouponDetails()
 
         j++;
   });
-
-
-
-  
 }
-
 
 function buyTokenForEther()
 {
     initTokenPurchase($("#inpMinContribution").val());
 }
-
 
 function initTokenPurchase(tokenValue)
 {
@@ -351,24 +295,7 @@ function getMinContribution(contractRef,callback)
     })
     .catch((error)=>{
         minContribution = false;
-        // sweetAlert("Error","Error Getting Minimum Contribution","error");
     });
-
-/*    contractRef.methods.minContribution().call(function (error, result) {
-        if(error){
-            minContribution = false;
-            sweetAlert("Error","Error Getting Minimum Contribution","error");
-        }
-
-        minContribution = (result.toString());
-
-        if (callback)
-        {
-            callback(minContribution);
-        }
-        
-    });*/
-
 }
 
 function getCouponAllowance(contractRef,currentUser,spender, callback) {
@@ -384,9 +311,7 @@ function getCouponAllowance(contractRef,currentUser,spender, callback) {
     })
     .catch((error)=>{
         couponAllowance = false;
-        // sweetAlert("Error","Error Getting Exchange Rate","error");
     });
-
 }
 
 function getCurrentExchangeRate(contractRef, callback) {
@@ -399,15 +324,11 @@ function getCurrentExchangeRate(contractRef, callback) {
         callback(currentExchangeRate);
     })
     .catch((error)=>{
-        currentExchangeRate = false;
-        // sweetAlert("Error","Error Getting Exchange Rate","error");
+        currentExchangeRate = false;       
     });
-
 }
 
-
 /*--------------Admin Functionality-----------------------------*/
-
 
 $(window).on("tokenTransferPaused",function(data)
 {
@@ -450,7 +371,6 @@ $(window).on("fundEndDateTime",function(data){
     $("#fundEndDateTime").html(toDate(data.fundEndDateTimeData.toString()));
   }
 });
-
 
 function changeSwitchery(element, checked) {
   if ( ( element.is(':checked') && checked == false ) || ( !element.is(':checked') && checked == true ) ) {
@@ -502,7 +422,6 @@ $("input.pausedToken").on("change" , function() {
           }
         });
 });
-
 /*
 * Paused contract
 */
@@ -524,9 +443,7 @@ function pausedContract(contractRef){
       handleGenericError(error.message);
       return;   
   });
-
 }
-
 /*
 * UnPaused contract
 */
@@ -548,7 +465,6 @@ function unPausedContract(contractRef){
       handleGenericError(error.message);
       return;   
   });
-
 }
 
 

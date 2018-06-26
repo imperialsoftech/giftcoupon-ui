@@ -1,7 +1,5 @@
 <?php include('template/_header.php');?>
-<?php
-    $tokenSymbol = "BLV";
-    ?>
+<?php $tokenSymbol = "BLV"; ?>
 
     <div class="page-wrapper">
         <!-- ============================================================== -->
@@ -21,14 +19,12 @@
                             <li class="breadcrumb-item">
                                 <a href="javascript:void(0)">Home</a>
                             </li>
-
                             <li class="breadcrumb-item active">Dashboard </li>
-
                         </ol>
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-info" id="divOngoingTransaction" style="display: none">Ongoing Transaction:
@@ -114,10 +110,7 @@
                         </div>
                     </div>
                 </div>
-
-
                 <div class="col-lg-6">
-
                     <div class="card">
                         <div class="card-body">
                             <div class="d-flex flex-row">
@@ -133,7 +126,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="row">
                 <div class="col-md-12">
@@ -159,7 +151,6 @@
                                 <div class="tab-pane p-20 active" id="token" role="tabpanel">
                                     <div class="row">
                                         <div class="col-lg-6">
-
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title">Buy
@@ -168,7 +159,6 @@
                                                         <?php echo $tokenSymbol; ?>
                                                     </h6>
                                                     <form class="form p-t-20">
-
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Ether (Minimum
                                                                 <span id="spMinContribution">0</span> ETH required)</label>
@@ -178,26 +168,20 @@
                                                                 </div>
                                                                 <input type="number" id="inpMinContribution" class="form-control" placeholder="Enter no. of ETH" aria-label="Email" aria-describedby="basic-addon2"
                                                                     value="0">
-
                                                             </div>
                                                         </div>
-
                                                         <button type="button" onclick="buyTokenForEther()" class="btn btn-success waves-effect waves-light m-r-10" id="btnBuyToken">Buy
                                                             <span id="spProbableToken">0
                                                                 <?php echo $tokenSymbol; ?>
                                                             </span>
                                                         </button>
-
                                                         <button type="button" disabled="" class="btn btn-warning" id="btnPausedPurchase" style="display: none">
                                                             Purchase Not Available
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>
-
-
-                                        </div>
-
+                                        </div>                                        
                                         <div class="col-lg-6">
                                             <div class="card">
                                                 <div class="card-body">
@@ -233,7 +217,6 @@
                                                                     id="sendToken">
                                                             </div>
                                                         </div>
-
                                                         <button type="submit" id="butTokenBtn" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
                                                         <button type="button" disabled="" class="btn btn-warning" id="btnTransferPurchase" style="display: none">
                                                             Transfer Not Available
@@ -241,20 +224,13 @@
                                                     </form>
                                                 </div>
                                             </div>
-
-
                                         </div>
-
-
                                     </div>
                                 </div>
 
                                 <div class="tab-pane p-20" id="giftCoupon" role="tabpanel">
-
-
                                     <div class="row">
                                         <div class="col-lg-6">
-
                                             <div class="card">
                                                 <div class="card-body" style="">
                                                     <h4 class="card-title"> Load Tokens </h4>
@@ -271,16 +247,13 @@
                                                                     <span class="input-group-text" id="basic-addon2">TOKEN</span>
                                                                 </div>
                                                                 <input type="number" id="approveToken" class="form-control" placeholder="Enter no. of Token" aria-label="Email" value="1">
-
                                                             </div>
                                                         </div>
-
                                                         <button type="button" onclick="approveTokenUse()" class="btn btn-success waves-effect waves-light m-r-10" id="btnBuyToken">Buy
                                                             <span id="">
                                                                 <?php echo $tokenSymbol; ?>
                                                             </span>
                                                         </button>
-
                                                         <button type="button" disabled="" class="btn btn-warning" id="btnPausedPurchase" style="display: none">
                                                             Purchase Not Available
                                                         </button>
@@ -291,7 +264,6 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title">Redeem Gift Coupon</h4>
-
                                                     <form class="form p-t-20" id="tokenSendFrm" onsubmit="return false;">
                                                         <div class="form-body">
                                                             <div class="form-group row">
@@ -305,16 +277,11 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </form>
                                                 </div>
                                             </div>
-
                                         </div>
-
-
                                         <div class="col-lg-6">
-
                                             <div class="card">
                                                 <div class="card-body">
                                                     <h4 class="card-title">Generate Gift Coupon</h4>
@@ -365,23 +332,17 @@
                                                                     </span>
                                                                 </div>
                                                                 <input type="date" class="form-control" placeholder="Coupon Expiry Date" aria-describedby="basic-addon2" id="coupon_expiry">
-
                                                             </div>
                                                         </div>
-
                                                         <button type="button" onclick="generateGiftCoupon()" id="btnGenerateCoupon" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
-
                                                         <button type="button" disabled="" class="btn btn-warning" id="btnTransferPurchase" style="display: none">
                                                             Transfer Not Available
                                                         </button>
                                                     </form>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
-
-
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Gift Coupons List</h4>
@@ -404,19 +365,13 @@
                                             </div>
                                         </div>
                                     </div>
-
-
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
     <?php include('template/_footer.php');?>
