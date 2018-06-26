@@ -13,16 +13,9 @@
 		'giftCouponContract' : '0x5b4cd3b2988ba3560b888ef72239cadd6a37a147'
 	};
 
-
 	$("#butTokenBtn").on('click',function(){
 		var beneficiaryAddress = $("#beneficaryAddress").val();
-		var sendToken = $("#sendToken").val();
-
-		var tokenAddress = icoAddress.tokenContract;
-	    $("#currentTokenAddress").html(tokenAddress);
-	
-
-		
+		var sendToken = $("#sendToken").val();		
 		/*
 		* Check beneficary address field error conditions
 		*/
@@ -54,10 +47,7 @@
 		}else{
 			sendTokenToBeneficary(token,coinbase,beneficiaryAddress,sendToken);
 		}
-
-
 	});
-
 
 	function handleGenericError(error_message)
 	{
@@ -143,13 +133,8 @@
 					window.location = "index.php";
 				}
 			}
-		});
-
-
-
-				
-		/* Check if on Rinkeby Network  */
-		
+		});				
+		/* Check if on Rinkeby Network  */	
 
 		/*
 		* Check User Account Status
@@ -193,7 +178,6 @@
 		setInterval(function(){
 			validateNetwork();
 			updateAccountLoginStatus();	
-
 
 			/*
 			* Check Contract Pause status
@@ -248,7 +232,6 @@
 		getAllEvents(token);
 	});
 
-
 	function validateNetwork()
 	{
 		web3.eth.net.getId(function (error, networkId) {
@@ -273,17 +256,12 @@
 		// contract = icoContract.at(icoAddress.mainContract);
 		// token = icoToken.at(icoAddress.tokenContract);
 
-		$(window).trigger("contractReady");
-
-		
+		$(window).trigger("contractReady");		
 
 		contract.events.allEvents((error,data) => {
 			////console.log(error);
 			//console.log(data);
-		})
-		
-
-		
+		})		
 	}
 
 	function updateAccountLoginStatus(){
@@ -329,9 +307,7 @@
 		getTokenBalance(token,coinbase,function(balance){
 			$("#tokenBalance").html(toEther(balance) + ' OKT');
 		});
-
 	}
-
 
 	function getTokenBalance(tokenContractRef,coinbase,callback) {
 		
@@ -487,7 +463,6 @@
 		return web3.utils.toWei(_val, "ether");
 	}
 
-
 	function toDate(_timestamp) {
 
 		var currentDate = new Date(_timestamp * 1000);
@@ -496,7 +471,6 @@
 														month: 'numeric',
 														year: 'numeric'
 													});
-
 		return formattedDate;
 	}
 
@@ -515,7 +489,6 @@
 
 	function buildTransactionData(transactionDetails)
 	{
-
 	    var tbody = "";
 	    var baseUrl = "https://rinkeby.etherscan.io/tx/";
 
@@ -548,6 +521,5 @@
 	                    </tr>
 	        `
 	    });
-
 	    return tbody;
 	}
