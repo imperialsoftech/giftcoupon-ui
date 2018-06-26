@@ -201,7 +201,7 @@ function getGiftCouponList(ContractRef,callback){
     }
   });
 }
-
+/*
 function showGiftCouponDetails()
 {
   $("#cc-table > tbody > tr.odd").remove();
@@ -242,7 +242,55 @@ function showGiftCouponDetails()
         j++;
     }
   });
+}*/
+
+function showGiftCouponDetails()
+{
+
+  j = 1;
+  getGiftCouponList(giftCoupon, function(CouponDetail){    
+
+    dateString = new Date(CouponDetail.validity * 1000 ).toLocaleString();
+    dateString = dateString.substring(0,dateString.indexOf(':')-4);  
+
+    if(CouponDetail.redeemedBy == "0x0000000000000000000000000000000000000000"){
+      redeemedAddress = `<span class="label label-danger">Not Redeemed</span>`;
+    }
+    else
+    {
+      redeemedUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.redeemedBy;
+
+      redeemedAddress = `<a href="`+redeemedUrl+`">`+ 
+                        CouponDetail.redeemedBy +
+                        `</a>`;
+    }
+
+    creatorUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.creator;
+
+  //  titleString = (CouponDetail.title).slice(1, -1);
+
+     var addRow = $('#myTable').DataTable();
+
+        addRow.row.add($(
+            '<tr>' +
+            '<td>'+j+'</td>' +
+            '<td>'+(CouponDetail.title).slice(1, -1)+'</td>' +
+            '<td>'+CouponDetail.code+'</td>' +
+            '<td>'+toEther(CouponDetail.cost)+'</td>' +
+            '<td>'+dateString+'</td>' +
+            '<td><a href='+creatorUrl+'>'+CouponDetail.creator+'</a></td>'+
+            '<td class="text-center">'+redeemedAddress+'</td>' +
+            '</tr>'
+        )).draw(false);
+
+        j++;
+  });
+
+
+
+  
 }
+
 
 function buyTokenForEther()
 {
