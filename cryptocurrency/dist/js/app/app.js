@@ -17,6 +17,11 @@
 	$("#butTokenBtn").on('click',function(){
 		var beneficiaryAddress = $("#beneficaryAddress").val();
 		var sendToken = $("#sendToken").val();
+
+		var tokenAddress = icoAddress.tokenContract;
+	    $("#currentTokenAddress").html(tokenAddress);
+	
+
 		
 		/*
 		* Check beneficary address field error conditions
@@ -189,6 +194,7 @@
 			validateNetwork();
 			updateAccountLoginStatus();	
 
+
 			/*
 			* Check Contract Pause status
 			*/
@@ -297,6 +303,7 @@
 		});
 	}
 
+	
 	function initAccountDetails(){
 		/*
 		* Get Current wallet account address

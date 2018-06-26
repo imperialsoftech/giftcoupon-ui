@@ -51,6 +51,9 @@
         $("#task1").perfectScrollbar();
         $("#task2").perfectScrollbar();
         $("#task3").perfectScrollbar();
+        $("#task4").perfectScrollbar();
+        $("#task5").perfectScrollbar();
+        $("#task6").perfectScrollbar();
 
        // initChart();
     });

@@ -2,6 +2,7 @@ var minContribution = false;
 var currentExchangeRate = false;
 var tokenExchangeRate = false;
 var couponAllowance = false;
+var tokenAddress = false;
 
 // var tokenDistributorInstance = contract;
 // var tokenBaseInstance = token;
@@ -14,7 +15,6 @@ $("#inpMinContribution").on("keyup", function () {
 
 $(window).on("contractReady", function ()
 {
-
     getMinContribution(contract,function(data)
     {
        $("#spMinContribution").html(toEther(data));
@@ -46,8 +46,9 @@ $(window).on("contractReady", function ()
     },2000);
 
     setTimeout(function(){
+        setTokenAddress();
        showGiftCouponDetails();
-    },500);
+    },1000); 
    
 });
 
@@ -71,6 +72,13 @@ $(window).on("tokenTransferPaused",function(data)
 
     }
 });
+
+function setTokenAddress()
+{
+    tokenAddress = icoAddress.tokenContract;
+    $("#currentTokenAddress").html(tokenAddress);
+}
+
 
 function approveTokenUse()
 {
@@ -196,22 +204,45 @@ function getGiftCouponList(ContractRef,callback){
 
 function showGiftCouponDetails()
 {
-  getGiftCouponList(giftCoupon, function(CouponDetail){
+  $("#cc-table > tbody > tr.odd").remove();
+  j= 1;
+  getGiftCouponList(giftCoupon, function(CouponDetail){    
 
-      CouponDetailBatch = "<tr role='row'>"+"<td>"+1+"</td>"+
-                    "<td>"+ CouponDetail.title +"</td>"+
-                    "<td>"+ CouponDetail.code +"</td>"+
-                    "<td> "+toEther(CouponDetail.cost) +" </td>"+
-                    "<td>"+ new Date(CouponDetail.validity * 1000 ).toLocaleString() +"</td>"+
-                    "<td>"+ CouponDetail.creator +"</td>"+
-                    "<td>"+ CouponDetail.redeemedBy +"</td></tr>";
+    dateString = new Date(CouponDetail.validity * 1000 ).toLocaleString();
+    dateString = dateString.substring(0,dateString.indexOf(':')-4);  
 
-        $("#cc-table > tbody").append(CouponDetailBatch);
-     
+    if(CouponDetail.redeemedBy == "0x0000000000000000000000000000000000000000"){
+      redeemedAddress = `<td class="no-wrap text-right"><span class="label label-danger">Not Redeemed</span></td>`;
+    }
+    else
+    {
+      redeemedUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.redeemedBy;
+
+      redeemedAddress = `<td><div class="text-ellipsis"><a href="`+redeemedUrl+`">`+ 
+                        CouponDetail.redeemedBy +
+                        `</a></div></td>`;
+    }
+
+    creatorUrl = "https://rinkeby.etherscan.io/address/"+CouponDetail.creator;
+
+    titleString = (CouponDetail.title).slice(1, -1);
+
+    if(CouponDetail.code!=""){
+      CouponDetailBatch =`<tr role="row">
+                                                <td>`+j+`</td>
+                                                <td>`+titleString+`</td>
+                                                <td>`+CouponDetail.code+`</td>
+                                                <td>`+toEther(CouponDetail.cost)+`</td>
+                                                <td>`+dateString+`</td>
+                                                <td>
+                                                    <div class="text-ellipsis"><a href="`+creatorUrl+`">`+ CouponDetail.creator +`</a></div>
+                                                </td>`+redeemedAddress+`</tr>` 
+
+        $("#cc-table > tbody").append(CouponDetailBatch);     
+        j++;
+    }
   });
 }
-
-
 
 function buyTokenForEther()
 {

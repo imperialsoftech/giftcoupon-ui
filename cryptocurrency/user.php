@@ -90,7 +90,7 @@ $tokenSymbol = "BLV";
                                     <div class="round align-self-center round-lg round-info"><i class="fa fa-qrcode"></i></div>
                                     <div class="m-l-10 align-self-center">
                                         <h3 class="m-b-0">Token Address</h3>
-                                        <h5 class="text-muted m-b-0">0xd1e3f4ea5040415d1a378e3697a3254afa2cad48</h5></div>
+                                        <h5 class="text-muted m-b-0" id="currentTokenAddress"></h5></div>
                                 </div>
                             </div>
                         </div> 
@@ -335,19 +335,21 @@ $tokenSymbol = "BLV";
                                             </tr>
                                         </thead>
                                         <tbody>
-                                             <tr role="row">
-                                                <td>1</td>
-                                                <td>Shopping Voucher</td>
-                                                <td>637752485</td>
-                                                <td>200</td>
-                                                <td>31/06/2018</td>
+                                             <!--  <tr role="row">
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
-                                                    <div class="text-ellipsis"><a href="JavaScript: void(0);">  0xab0874cB61D83F6B67Dc08141568868102233bef</a></div>
+                                                    <div class="text-ellipsis"><a href="JavaScript: void(0);">  
+                                                    </a></div>
                                                 </td>                                                
                                                 <td>
-                                                    <div class="text-ellipsis"><a href="JavaScript: void(0);">  0xab0874cB61D83F6B67Dc08141568868102233bef</a></div>
+                                                    <div class="text-ellipsis"><a href="JavaScript: void(0);">  
+                                                    </a></div>
                                                 </td>                                                
-                                            </tr> 
+                                            </tr>  -->
                                           <!--  <tr role="row">
                                                 <td>2</td>
                                                 <td>
