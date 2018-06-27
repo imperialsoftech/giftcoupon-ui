@@ -9,8 +9,8 @@
 	- giftCouponContract
 
 
-This is UI Implementation of Gift Coupon using Etheruem Smart Contract
-More Details can be found at this link: 
+- This is UI Implementation of Gift Coupon using Etheruem Smart Contract
+- More Details can be found at this link: 
 
-https://github.com/imperialsoftech/coffee-supplychain-ethereum
+https://github.com/imperialsoftech/giftcoupon-ethereum
 
