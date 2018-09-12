@@ -176,7 +176,7 @@
 		});
 
 		setInterval(function(){
-			validateNetwork();
+			// validateNetwork();
 			updateAccountLoginStatus();	
 
 			/*

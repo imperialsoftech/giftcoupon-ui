@@ -90,8 +90,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="ti-ticket"></i></span>
                                             </div>
-                                            <input type="text" class="form-control" placeholder="Coupon Title" aria-label="Coupon Title" aria-describedby="basic-addon1" id="coupon_title" value="">   
+                                            <input type="text" class="form-control" placeholder="Coupon Title" aria-label="Coupon Title" aria-describedby="basic-addon1" id="coupon_title" value="" required="" data-parsley-errors-container="#coupon_title_span">   
                                         </div>
+                                        <span id="coupon_title_span"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputuname">Coupon Cost</label>
@@ -99,8 +100,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-ge"></i></span>
                                             </div>
-                                            <input type="number" min="100" class="form-control" placeholder="No. of Tokens" aria-label="Coupon Cost" aria-describedby="basic-addon1" id="coupon_cost" value="">
+                                            <input type="number" min="100" class="form-control" placeholder="No. of Tokens" aria-label="Coupon Cost" aria-describedby="basic-addon1" id="coupon_cost" value="" required="" data-parsley-errors-container="#coupon_cost_span">
                                         </div>
+                                        <span id="coupon_cost_span"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputuname">Coupon Quantity</label>
@@ -108,8 +110,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-shopping-basket"></i></span>
                                             </div>
-                                            <input type="number" min="1" class="form-control" placeholder="Coupon Quantity" aria-label="Coupon Quantity" aria-describedby="basic-addon1" id="coupon_quantity" value="">
+                                            <input type="number" min="1" class="form-control" placeholder="Coupon Quantity" aria-label="Coupon Quantity" aria-describedby="basic-addon1" id="coupon_quantity" value="" required="" data-parsley-errors-container="#coupon_quantity_span">
                                         </div>
+                                        <span id="coupon_quantity_span"></span>
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Coupon Expiry</label>
@@ -117,12 +120,13 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text" id="basic-addon2"><i class=" fa fa-calendar"></i></span>
                                             </div>
-                                            <input type="date" class="form-control" placeholder="Coupon Expiry Date" aria-describedby="basic-addon2" id="coupon_expiry">
+                                            <input type="date" class="form-control" placeholder="Coupon Expiry Date" aria-describedby="basic-addon2" id="coupon_expiry" required="" data-parsley-errors-container="#coupon_expiry_span">
 
                                         </div>
+                                         <span id="coupon_expiry_span"></span>
                                     </div>
                                     
-                                    <button type="submit" id="butTokenBtn" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
+                                    <button type="submit" id="butTokenBtn1" onclick="generateGiftCoupon();" class="btn btn-success waves-effect waves-light m-r-10">Send</button>
                                     <button type="button" disabled="" class="btn btn-warning" id="btnTransferPurchase" style="display: none">
                                         Transfer Not Available
                                     </button>

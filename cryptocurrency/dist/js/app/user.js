@@ -110,6 +110,10 @@ function approveTokenAllowance(tokenValue){
 
 function generateGiftCoupon()
 {
+   if($("#generateCouponFrm").parsley().validate()==false){
+    return false;
+  }
+
    tmpDate = $("#coupon_expiry").val().trim().split("-");
    tmpDate = tmpDate[0]+"/"+tmpDate[1]+"/"+tmpDate[2];    
 
