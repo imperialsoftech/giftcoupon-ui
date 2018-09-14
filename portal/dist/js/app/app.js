@@ -1,16 +1,15 @@
 	var coinbase, 
 		icoContract, 
 		icoToken, 
-		contract, 
 		token, 
 		tokenBalance,
 		tokenPurchasePaused,
 		tokenTransferPaused;
 
 	var icoAddress = {
-		'tokenContract': "0x6b1d60ea08927c6d7c24c6f7d4fd8ba45fbe0c0b",
-		'mainContract': "0xb58c47b9df3ba775f9c8e221f0f3d84185e05462",		
-		'giftCouponContract' : '0x5b4cd3b2988ba3560b888ef72239cadd6a37a147'
+		'tokenContract': "0x3b8682bea6be48c2e3ee32858ca7e122573f9c51", /* IcoContract: Address Here */
+		'mainContract': "0xa012e6d8b7dfbd08b99283c177df0e784f2f0713",	/* IcoToken: Address Here */	
+		'giftCouponContract' : '0x7fec95b9509ca9f8726c2f651eef8369d430b1dd' /* GiftCoupon: Address here*/
 	};
 
 	$("#butTokenBtn").on('click',function(){
@@ -130,7 +129,7 @@
 			if(currentPanel == "admin.php")
 			{
 				if(address != 0xab0874cB61D83F6B67Dc08141568868102233bef){
-					window.location = "index.php";
+					// window.location = "index.php";
 				}
 			}
 		});				
@@ -142,7 +141,7 @@
 
 		initContract();
 
-		getPauseStatus(contract,function(status)
+		getPauseStatus(icoContract,function(status)
 		{
 			if(status==false)
 			{
@@ -182,7 +181,7 @@
 			/*
 			* Check Contract Pause status
 			*/
-			getPauseStatus(contract,function(status)
+			getPauseStatus(icoContract,function(status)
 			{
 				tokenPurchasePaused = status;
 				$(window).trigger({type:"tokenPurchasePaused",tokenPurchasePausedStatus:tokenPurchasePaused});
@@ -199,7 +198,7 @@
 			/*
 			* get Token Creation Cap
 			*/
-			getTokenCreationCap(contract,function(data){
+			getTokenCreationCap(icoContract,function(data){
 				tokenCreationCap = data;
 	 			$(window).trigger({type:"tokenCreationCap",tokenCreationCapData:tokenCreationCap});
 			});
@@ -207,7 +206,7 @@
 			/*
 			* get Total Supply
 			*/
-			getTotalSupply(contract,function(data){
+			getTotalSupply(icoContract,function(data){
 				totalSupply = data;
 	 			$(window).trigger({type:"totalSupply",totalSupplyData:totalSupply});
 			});
@@ -215,7 +214,7 @@
 			/*
 			* get Fund Start Date
 			*/
-			getFundStartDateTime(contract,function(data){
+			getFundStartDateTime(icoContract,function(data){
 				fundStartDateTime = data;
 	 			$(window).trigger({type:"fundStartDateTime",fundStartDateTimeData:fundStartDateTime});
 			});
@@ -223,7 +222,7 @@
 			/*
 			* get Fund End Date
 			*/
-			getFundEndDateTime(contract,function(data){
+			getFundEndDateTime(icoContract,function(data){
 				fundEndDateTime = data;
 	 			$(window).trigger({type:"fundEndDateTime",fundEndDateTimeData:fundEndDateTime});
 			});
@@ -246,8 +245,8 @@
 		/*
 		 * Initialize contract with web3
 		 */
-		contract = new web3.eth.Contract(icoContractAbi,icoAddress.mainContract);
-		token = new web3.eth.Contract(icoTokenAbi,icoAddress.tokenContract);
+		icoContract = new web3.eth.Contract(icoContractAbi,icoAddress.tokenContract);
+		token = new web3.eth.Contract(icoTokenAbi,icoAddress.mainContract);
 		giftCoupon = new web3.eth.Contract(giftCouponAbi,icoAddress.giftCouponContract);
 
 		/*
@@ -258,7 +257,7 @@
 
 		$(window).trigger("contractReady");		
 
-		contract.events.allEvents((error,data) => {
+		icoContract.events.allEvents((error,data) => {
 			////console.log(error);
 			//console.log(data);
 		})		
@@ -271,8 +270,12 @@
 				console.error("An error occurred: " + err);
 			} 
 		    else if (accounts.length == 0){
-		     	// sweetAlert('Error', 'Please login to MetaMask..!', 'error');
-		     	window.location = 'index.php';
+		     	sweetAlert('Error', 'Please login to MetaMask..!', 'error');
+		     	setTimeout(function()
+		     	{
+		     		window.location = 'index.php';	
+		     	},5000);
+		     	
 		     	// $("#currentUserAddress").html('').html("0x0000000000000000000000000000000000000000");
 			}
 			else{

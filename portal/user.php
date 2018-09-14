@@ -1,5 +1,5 @@
 <?php include('template/_header.php');?>
-<?php $tokenSymbol = "BLV"; ?>
+<?php $tokenSymbol = "OKT"; ?>
 
     <div class="page-wrapper">
         <!-- ============================================================== -->

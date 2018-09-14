@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+    <title>Gift Coupon</title>
     <!-- page css -->
     <link href="dist/css/pages/login-register-lock.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -32,7 +32,7 @@
     <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">Elite admin</p>
+            <p class="loader__label">Gift Coupon</p>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -49,7 +49,7 @@
                     </div>     
                     <div class="form-group text-center">
                         <div class="col-md-12">
-                            <h4><b>Welcome to OKT Coin Exchange</b></h4>
+                            <h4><b>Welcome to Gift Coupon</b></h4>
                             <h6>Here you can buy and transfer your coin.</h6>
                         </div>
                     </div>    

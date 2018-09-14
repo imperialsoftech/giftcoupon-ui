@@ -6,11 +6,11 @@ var tokenAddress = false;
 
 $("#inpMinContribution").on("keyup", function () {
     var tokenValue = currentExchangeRate * $(this).val();
-    $("#spProbableToken").html(tokenValue + " BLV");
+    $("#spProbableToken").html(tokenValue + " OKT");
 });
 
 $(window).on("contractReady", function () {
-    getMinContribution(contract,function(data)
+    getMinContribution(icoContract,function(data)
     {
        $("#spMinContribution").html(toEther(data));
 
@@ -23,9 +23,9 @@ $(window).on("contractReady", function () {
        }, 100);       
     });
 
-    getCurrentExchangeRate(contract, function(result){
+    getCurrentExchangeRate(icoContract, function(result){
         if(result != false){
-            $("#currentOKTExchangeRate").html("<b>1 Ether</b> = <b>"+result+" BLV</b>");
+            $("#currentOKTExchangeRate").html("<b>1 Ether</b> = <b>"+result+" OKT</b>");
             tokenExchangeRate = result;
         }
     });
@@ -35,7 +35,7 @@ $(window).on("contractReady", function () {
       getCouponAllowance(token,coinbase,icoAddress.giftCouponContract, function(result){
           if(result != false)
           {
-            $("#couponAllowance").html("<b> Token : "+toEther(result)+" BLV</b>");
+            $("#couponAllowance").html("<b> Token : "+toEther(result)+" OKT</b>");
           }
       });
     },2000);
@@ -262,7 +262,7 @@ function initTokenPurchase(tokenValue)
     // 
     transObj = {};
     transObj.from = coinbase;
-    transObj.to = icoAddress.mainContract;
+    transObj.to = icoAddress.tokenContract;
     transObj.value = tokenValueWei;
 
     try
@@ -322,13 +322,16 @@ function getCurrentExchangeRate(contractRef, callback) {
 
     callback = callback || false;
 
+    console.log(contractRef._address);
+
     contractRef.methods.tokenExchangeRate().call()
     .then((result)=>{
         currentExchangeRate = result.toString();
         callback(currentExchangeRate);
     })
     .catch((error)=>{
-        currentExchangeRate = false;       
+        currentExchangeRate = false;   
+        console.log(error);   
     });
 }
 

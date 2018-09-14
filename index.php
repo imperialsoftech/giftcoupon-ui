@@ -1,3 +1,3 @@
 <?php 
-	header('Location:cryptocurrency/index.php');
+	header('Location:portal/index.php');
 ?>
